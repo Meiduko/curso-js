@@ -4,8 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masterdots game</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" 
+    href="https://fonts.gstatic.com" 
+    crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" 
+    rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src ="./js/app.js"></script>
 </head>
 <body>
-    
+    <!-- CABECERA -->
+    <header>
+        <img src="./img/logo.png" alt="logo Masterdots">
+    </header>
+    <!-- FORMULARIO USUARIO -->
+    <main>
+        <form action="#">
+            <ul>
+                <li class="itemform">
+                    <label for="nick">Enter your nick</label>
+                    <input type="text" name="nick" value="@" id="nicka" readonly>
+                    <input type="text" name="nick" id="nick">
+                </li>
+                <li class="itemform">
+                    <label for="email">Enter your email</label>
+                    <input type="email" name="email" id="email" value="yo@iam.com">
+                </li>
+                <li class="itemform">
+                    <label for="size">Game size</label>
+                    <select name="size" id="size">
+                        <option value="">--Please pick a size--</option>
+                        <option value="1">4x4</option>
+                        <option value="2">5x5</option>
+                        <option value="3">6x6</option>
+                    </select>
+                </li>
+                <li class="itemform">
+                    <label for="avatar">Avatar</label>
+                    <select name="" id=""></select>
+                </li>
+                <li class="itemform">
+                    <button type="submit">Jugar</button>
+                </li>
+            </ul>
+        </form>
+    </main>
+    <!-- PIE DE PAGINA -->
+    <footer>
+        <p>Curso Frontend HTML, CSS Y JS</p>
+    </footer>
 </body>
 </html>
