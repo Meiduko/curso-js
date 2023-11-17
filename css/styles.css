@@ -32,7 +32,7 @@ input, select{
     height: 30px;
     width: 280px;
     border: 1px;
-    padding: 0;
+    padding: 0px 0px 0px 2px;
     font-weight: 200;
 }
 
@@ -62,5 +62,5 @@ button{
 
 /* css por clase */
 .itemform{
-     padding: 5px;
+    padding: 5px;
 }
