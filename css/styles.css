@@ -11,6 +11,7 @@ header, footer{
 }
 
 form{
+    list-style: none;
     display: flex;
     justify-content: center;
     gap: 10px;
