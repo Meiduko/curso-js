@@ -26,17 +26,17 @@
         <form action="juego.html" id="entryForm">
             <ul>
                 <li class="itemform">
-                    <label for="nicka">Enter your nick</label>
+                    <label for="nicka">Enter your nick*</label>
                     <input type="text" name="nicka" value="@" id="nicka" readonly>
-                    <input type="text" name="nick" id="nick">
+                    <input type="text" name="nick" id="nick" required minlength="2">
                 </li>
                 <li class="itemform">
                     <label for="email">Enter your email</label>
                     <input type="email" name="email" id="email" value="yo@iam.com">
                 </li>
                 <li class="itemform">
-                    <label for="size">Game size</label>
-                    <select name="size" id="size">
+                    <label for="size">Game size*</label>
+                    <select name="size" id="size" required>
                         <option value="0">--Please pick a size--</option>
                         <option value="1">4x4</option>
                         <option value="2">5x5</option>
@@ -46,6 +46,9 @@
                 <li class="itemform">
                     <label for="avatar">Avatar</label>
                     <select name="" id=""></select>
+                </li>
+                <li>
+                    <p>* Obligatorio</p>
                 </li>
                 <li class="itemform">
                     <button id="jugar" type="submit">Jugar</button>

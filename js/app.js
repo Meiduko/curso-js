@@ -10,15 +10,13 @@ const error =  document.getElementById("error")
 //Funciones de evento
 function comprobarForm(event){
     //Comprobar cambios
-    if(nickinput.value.length == 0)
+    if(nickinput.value.match(/(?<!\S)[0-9]/))
     {
-        console.log("No hay nick");
         nickinput.focus();
         event.preventDefault();
-        error.innerText = 'el campo de nick no puede estar vacío';
+        error.innerText = 'el campo de nick no puede comenzar con un número';
         return false;
     }else if(sizeinput.value == '0'){
-        console.log('No se ha seleccionado tamaño del panel');
         sizeinput.focus();
         event.preventDefault();
         error.innerText = 'Se debe seleccionar un tamaño de panel';
