@@ -60,6 +60,15 @@ button{
     height: 30px;
 }
 
+#error{
+    text-align: center;
+    color: #FD1854;
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* css por clase */
 .itemform{
     padding: 5px;

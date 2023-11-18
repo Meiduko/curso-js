@@ -20,11 +20,14 @@
     </header>
     <!-- FORMULARIO USUARIO -->
     <main>
-        <form action="#">
+        <div>
+            <p id="error"></p>
+        </div>
+        <form action="juego.html" id="entryForm">
             <ul>
                 <li class="itemform">
-                    <label for="nick">Enter your nick</label>
-                    <input type="text" name="nick" value="@" id="nicka" readonly>
+                    <label for="nicka">Enter your nick</label>
+                    <input type="text" name="nicka" value="@" id="nicka" readonly>
                     <input type="text" name="nick" id="nick">
                 </li>
                 <li class="itemform">
@@ -34,7 +37,7 @@
                 <li class="itemform">
                     <label for="size">Game size</label>
                     <select name="size" id="size">
-                        <option value="">--Please pick a size--</option>
+                        <option value="0">--Please pick a size--</option>
                         <option value="1">4x4</option>
                         <option value="2">5x5</option>
                         <option value="3">6x6</option>
@@ -45,7 +48,7 @@
                     <select name="" id=""></select>
                 </li>
                 <li class="itemform">
-                    <button type="submit">Jugar</button>
+                    <button id="jugar" type="submit">Jugar</button>
                 </li>
             </ul>
         </form>
