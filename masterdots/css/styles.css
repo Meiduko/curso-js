@@ -45,6 +45,9 @@ button{
     width: 280px;
     font-family: 'Quicksand', sans-serif;
 }
+li p{
+    font-weight: 100;
+}
 
 /* css por ID */
 #nicka{
