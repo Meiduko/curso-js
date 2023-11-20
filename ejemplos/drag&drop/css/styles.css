@@ -1,0 +1,14 @@
+body{
+    display: grid;
+    grid-template-columns: 100px;
+    gap: 20px;
+}
+
+#objeto{
+    padding: 0 0 72px 0;
+    background-color: red;
+}
+#contenedor{
+    padding: 0 200px 172px 0;
+    border: 1px solid black;
+}

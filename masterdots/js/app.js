@@ -36,9 +36,14 @@ function comprobarForm(event){
     }
     //La informacion es correcta
     datosUsuario(nickinput, sizeinput, emailinput);
-    historicoUsuarios(nickinput)
+    historicoUsuarios(nickinput);
     return true;
 }
+
+/**
+ * Carga de objetos del DOM comprobaciones y eventos del formulario
+ * @returns {undefined}
+ */
 function domCargado(){
     //Captura de todos los Elements
     nickinput = document.getElementById("nick");
@@ -46,17 +51,18 @@ function domCargado(){
     emailinput = document.getElementById("email");
     entryForm = document.getElementById("entryForm");
     error =  document.getElementById("error");
+
+    //Comprobar errores de juego.html
+    if (sessionStorage.getItem('error') !=null){
+        error.innerText = sessionStorage.getItem('error');
+        sessionStorage.removeItem('error');
+    }
+    entryForm.addEventListener('submit',comprobarForm);
 }
 
-//Comprobar errores de juego.html
-if (sessionStorage.getItem('error') !=null){
-    error.innerText = sessionStorage.getItem('error');
-    sessionStorage.removeItem('error');
-}
-historicoUsuarios(nickinput)
+
 
 //Inicio de carga de eventos
 document.addEventListener('DOMContentLoaded',domCargado);
-entryForm.addEventListener('submit',comprobarForm);
 //Geolocalizacion
 datoGeolocalizacion();
