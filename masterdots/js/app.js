@@ -11,6 +11,10 @@ var sizeinput;
 var emailinput;
 var entryForm;
 var error;
+var avatarItems;
+var itemImg;
+var avatarCont;
+
 
 
 
@@ -39,6 +43,14 @@ function comprobarForm(event){
     historicoUsuarios(nickinput);
     return true;
 }
+function moviendoImg(event){
+    itemImg = event.target;
+    console.log(itemImg.src);
+}
+
+function cambiarImg(event){
+    avatarCont.src = itemImg.src;
+}
 
 /**
  * Carga de objetos del DOM comprobaciones y eventos del formulario
@@ -58,6 +70,15 @@ function domCargado(){
         sessionStorage.removeItem('error');
     }
     entryForm.addEventListener('submit',comprobarForm);
+
+    avatarItems = document.getElementsByClassName('avatarImgItem')
+    //Eventos del D&D
+    for(let item of avatarItems){ 
+        item.addEventListener('dragstart', moviendoImg)
+    }
+    avatarCont = document.getElementById('avatarImg');
+    avatarCont.addEventListener('dragover',e=>{e.preventDefault()})
+    avatarCont.addEventListener('drop',cambiarImg)
 }
 
 
