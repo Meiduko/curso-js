@@ -31,95 +31,104 @@
             </ul>
         </aside>
         <article id="piezas">
-            <section id="CPU" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="CPU" class="pieza" draggable="true">
+                <img id="CPUImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>CPU</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="CPU" id="CPUSelect">
-                    <option value="'0'">CPU</option>
-                    <option value="'1'">i3</option>
-                    <option value="'2'">i5</option>
-                    <option value="'3'">i7</option>
-                    <option value="'4'">i9</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioCPU">Precio</span>
+                <select name="CPU" class="select">
+                    <option value="0">CPU</option>
+                    <option value="1">i3</option>
+                    <option value="2">i5</option>
+                    <option value="3">i7</option>
+                    <option value="4">i9</option>
                 </select>
             </section>
-            <section id="GPU" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="GPU" class="pieza" draggable="true">
+                <img id="GPUImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>GPU</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="GPU" id="GPUSelect">
-                    <option value="'0'">GPU</option>
-                    <option value="'1'">RTX-4070</option>
-                    <option value="'2'">RTX-3070</option>
-                    <option value="'3'">RTX-2070</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioGPU">Precio</span>
+                <select name="GPU" class="select">
+                    <option value="0">GPU</option>
+                    <option value="1">RTX-4070</option>
+                    <option value="2">RTX-3070</option>
+                    <option value="3">RTX-2070</option>
                 </select>
             </section>
-            <section id="Alimentación" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="Alimentación" class="pieza" draggable="true">
+                <img id="AlimentaciónImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>Alimentación</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="Alimentación" id="AlimentaciónSelect">
-                    <option value="'0'">Alimentación</option>
-                    <option value="'1'">1177-corsair-cv-series-cv650-650w-80-plus-bronze-v2</option>
-                    <option value="'2'">1924-corsair-rm-white-series-rm850-850w-80-plus-gold-full-modular</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioAlimentacion">Precio</span>
+                <select name="Alimentación" class="select">
+                    <option value="0">Alimentación</option>
+                    <option value="1">1177-corsair-cv-series-cv650-650w-80-plus-bronze-v2</option>
+                    <option value="2">1924-corsair-rm-white-series-rm850-850w-80-plus-gold-full-modular</option>
                 </select>
             </section>
-            <section id="RAM" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="RAM" class="pieza" draggable="true">
+                <img id="RAMImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>RAM</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="RAM" id="RAMSelect">
-                    <option value="'0'">RAM</option>
-                    <option value="'1'">team-group-delta-rgb-ddr4-3200-pc4-25600-16gb-2x8gb</option>
-                    <option value="'2'">corsair-vengeance-lpx-ddr4-3600mhz-pc4-28800-32gb-2x16gb</option>
-                    <option value="'3'">corsair-vengeance-ddr5-5600mhz-64gb-2x32gb</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioRAM">Precio</span>
+                <select name="RAM" class="select">
+                    <option value="0">RAM</option>
+                    <option value="1">team-group-delta-rgb-ddr4-3200-pc4-25600-16gb-2x8gb</option>
+                    <option value="2">corsair-vengeance-lpx-ddr4-3600mhz-pc4-28800-32gb-2x16gb</option>
+                    <option value="3">corsair-vengeance-ddr5-5600mhz-64gb-2x32gb</option>
                 </select>
             </section>
-            <section id="SSD" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="SSD" class="pieza" draggable="true">
+                <img id="SSDImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>SSD</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="SSD" id="SSDSelect">
-                    <option value="'0'">SSD</option>
-                    <option value="'1'">kingston-nv2-1tb-ssd</option>
-                    <option value="'2'">samsung-980-pro-ssd-2tb</option>
-                    <option value="'3'">acer-predator-4tb-ssd-m2</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioSSD">Precio</span>
+                <select name="SSD" class="select">
+                    <option value="0">SSD</option>
+                    <option value="1">kingston-nv2-1tb-ssd</option>
+                    <option value="2">samsung-980-pro-ssd-2tb</option>
+                    <option value="3">acer-predator-4tb-ssd-m2</option>
                 </select>
             </section>
-            <section id="PlacaBase" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="PlacaBase" class="pieza" draggable="true">
+                <img id="PlacaBaseImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>Placa base</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="PlacaBase" id="PlacaBaseSelect">
-                    <option value="'0'">PlacaBase</option>
-                    <option value="'1'">asus-rog-maximus-z790-formula</option>
-                    <option value="'2'">asus-rog-maximus-z790-hero-eva-02</option>
-                    <option value="'3'">asus-rog-strix-z790-f-gaming-wifi</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioPlacaBASE">Precio</span>
+                <select name="PlacaBase" class="select">
+                    <option value="0">PlacaBase</option>
+                    <option value="1">asus-rog-maximus-z790-formula</option>
+                    <option value="2">asus-rog-maximus-z790-hero-eva-02</option>
+                    <option value="3">asus-rog-strix-z790-f-gaming-wifi</option>
                 </select>
             </section>
-            <section id="Disipador" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="Disipador" class="pieza" draggable="true">
+                <img id="DisipadorImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>Refrigeración</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="Refrigeración" id="RefrigeraciónSelect">
-                    <option value="'0'">Refrigeración</option>
-                    <option value="'1'">tempest-gaming-liquid-cooler-120-rgb-kit-de-refrigeracion-liquida</option>
-                    <option value="'2'">tempest-liquid-cooler-240-kit-de-refrigeracion-liquida-negro</option>
-                    <option value="'3'">msi-mag-coreliquid-e240-kit-de-refrigeracion-liquida</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioDisipador">Precio</span>
+                <select name="Refrigeración" class="select">
+                    <option value="0">Refrigeración</option>
+                    <option value="1">tempest-gaming-liquid-cooler-120-rgb-kit-de-refrigeracion-liquida</option>
+                    <option value="2">tempest-liquid-cooler-240-kit-de-refrigeracion-liquida-negro</option>
+                    <option value="3">msi-mag-coreliquid-e240-kit-de-refrigeracion-liquida</option>
                 </select>
             </section>
-            <section id="Chasis" class="pieza">
-                <img src="./img/avatar2.png" alt="" width="150">
+            <section id="Chasis" class="pieza" draggable="true">
+                <img id="ChasisImg" src="./img/avatar2.png" alt="" width="150" draggable="false">
                 <h2>Chasis</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                <select name="Chasis" id="ChasisSelect">
-                    <option value="'0'">Chasis</option>
-                    <option value="'1'">tempest-soul-rgb-torre-atx-negra</option>
-                    <option value="'2'">nfortec-azir-white-cristal-templado-usb-30-blanca-opiniones</option>
-                    <option value="'3'">forgeon-tiberium-argb-cristal-templado-usb-30-negra</option>
+                <p class="descripcion">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                <span id="precioChasis">Precio</span>
+                <select name="Chasis" class="select">
+                    <option value="0">Chasis</option>
+                    <option value="1">tempest-soul-rgb-torre-atx-negra</option>
+                    <option value="2">nfortec-azir-white-cristal-templado-usb-30-blanca-opiniones</option>
+                    <option value="3">forgeon-tiberium-argb-cristal-templado-usb-30-negra</option>
                 </select>
             </section>  
         </article>
     </main>
+    <script src="./js/app.js"></script>
 </body>
 </html>
