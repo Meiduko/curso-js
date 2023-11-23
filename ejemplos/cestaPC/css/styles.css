@@ -16,6 +16,7 @@ article{
     @media(max-width: 600px){
         width: 100%;
         justify-content: space-around;
+        margin-top: 20px;
     }
     float: left;
     display: grid;
@@ -34,7 +35,7 @@ section{
 }
 section img{
     margin-top: 10px;
-    padding: 0 10px 0 10px;
+
 }
 section h2{
     border-top: 1px solid #020118;
@@ -69,6 +70,14 @@ aside{
 }
 aside img{
     float: left;
+}
+
+aside input{
+    font-family: 'Quicksand', sans-serif;
+    border: 1px solid #6714ff;
+    border-radius: 10px 10px 10px 10px;
+    background-image: linear-gradient(to top left, #6714ff, #47039b);
+    width: 50px;
 }
 
 #listaElegidos{
