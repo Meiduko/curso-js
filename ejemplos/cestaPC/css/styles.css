@@ -31,11 +31,11 @@ section{
     border: 1px solid #1b2432;
     border-radius: 10px;
     width: 200px;
+    height: 340px;
     box-shadow: 3px 3px 5px #2f0070;
 }
 section img{
-    margin-top: 10px;
-
+    margin: 10px 20px 10px 20px;
 }
 section h2{
     border-top: 1px solid #020118;
@@ -53,6 +53,7 @@ section select{
     border-radius: 0 0 10px 10px;
     background-image: linear-gradient(to top left, #6714ff, #47039b);
     width: 200px;
+    margin-top: 10px;
 }
 
 aside{
