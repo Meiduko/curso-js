@@ -13,7 +13,7 @@ nav{
 }
 
 article{
-    @media(max-width: 600px){
+    @media(max-width: 665px){
         width: 100%;
         justify-content: space-around;
         margin-top: 20px;
@@ -57,20 +57,19 @@ section select{
 }
 
 aside{
-    @media(max-width: 600px){
+    @media(max-width: 665px){
         float: left;
         width: 100%;
+        height: auto;
     }
-    display: grid;
+    height: 1428px;
+    display: fñex;
     float: right;
     border: 1px solid #1b2432;
     border-radius: 10px;
     padding: 0 10px 0 10px;
     margin-top: 75px;
     background-image: linear-gradient(to top left, #6714ff, #47039b);
-}
-aside img{
-    float: left;
 }
 
 aside input{

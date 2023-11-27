@@ -11,6 +11,9 @@ var sections;
 var selects;
 var descripcion;
 var cesta;
+var precio;
+var precioTotal = document.getElementById('precio');
+var precioTot;
 const productos = {
     CPU: {
         1:{
@@ -120,20 +123,131 @@ function domCargado(){
     for (let select of selects){
         select.addEventListener('change',cambiarContenido)
     }
+    if (localStorage.getItem('precioTotal') != null){
+        precioTotal.value = localStorage.getItem('precioTotal')
+    }
+    if (localStorage.getItem('CPUelegido') != null){
+        CPUelegido.innerText = localStorage.getItem('CPUelegido');
+    }
+    if (localStorage.getItem('GPUelegido') != null){
+        GPUelegido.innerText = localStorage.getItem('GPUelegido');
+    }
+    if (localStorage.getItem('AlimentaciónElegido') != null){
+        AlimentaciónElegido.innerText = localStorage.getItem('AlimentaciónElegido');
+    }
+    if (localStorage.getItem('RAMelegido') != null){
+        RAMelegido.innerText = localStorage.getItem('RAMelegido');
+    }
+    if (localStorage.getItem('SSDelegido') != null){
+        SSDelegido.innerText = localStorage.getItem('SSDelegido');
+    }
+    if (localStorage.getItem('SSDelegido') != null){
+        SSDelegido.innerText = localStorage.getItem('SSDelegido');
+    }
+    if (localStorage.getItem('PBelegido') != null){
+        PBelegido.innerText = localStorage.getItem('PBelegido');
+    }
+    if (localStorage.getItem('ChasisElegido') != null){
+        ChasisElegido.innerText = localStorage.getItem('ChasisElegido');
+    }
+    
 }
 function guardarInfo(event){
+    let select = event.target.querySelector('.select');
     let idPieza =  event.target.attributes.id.nodeValue;
     let descripcion = event.target.querySelector('.descripcion');
-    let prec = event.target.querySelector('.precio').innerText; //sin '€'
-    let precio = prec.slice(0, prec.length - 1)
+    let prec = event.target.querySelector('.precio').innerText;
+    precio = prec.slice(0, prec.length - 1) //sin '€'
 
-    cesta.addEventListener('drop', function (e){addToCart(e, idPieza, descripcion, precio)})
+    cesta.addEventListener('drop', function (e){addToCart(e, idPieza, descripcion, select)}, {once: true});
     cesta.addEventListener('dragover',e=>{e.preventDefault()})
 }
+
+function removeItem(event, elegido){
+    precioTot  = precioTotal.value.slice(0, precioTotal.value.length - 1);
+    switch(elegido.innerText){
+        case productos.CPU[1].descripcion:
+            precio = parseInt(productos.CPU[1].precio);
+            break;
+        case productos.CPU[2].descripcion:
+            precio = parseInt(productos.CPU[2].precio);
+            break;
+        case productos.CPU[3].descripcion:
+            precio = parseInt(productos.CPU[3].precio);
+            break;
+        case productos.CPU[4].descripcion:
+            precio = parseInt(productos.CPU[4].precio);
+            break;
+        case productos.GPU[1].descripcion:
+            precio = parseInt(productos.GPU[1].precio);
+            break;
+        case productos.GPU[2].descripcion:
+            precio = parseInt(productos.GPU[2].precio);
+            break;
+        case productos.GPU[3].descripcion:
+            precio = parseInt(productos.GPU[3].precio);
+            break;
+        case productos.Alimentación[1].descripcion:
+            precio = parseInt(productos.Alimentación[1].precio);
+            break;
+        case productos.Alimentación[2].descripcion:
+            precio = parseInt(productos.Alimentación[2].precio);
+            break;
+        case productos.RAM[1].descripcion:
+            precio = parseInt(productos.RAM[1].precio);
+            break;
+        case productos.RAM[2].descripcion:
+            precio = parseInt(productos.RAM[2].precio);
+            break;
+        case productos.RAM[3].descripcion:
+            precio = parseInt(productos.RAM[3].precio);
+            break;
+        case productos.SSD[1].descripcion:
+            precio = parseInt(productos.SSD[1].precio);
+            break;
+        case productos.SSD[2].descripcion:
+            precio = parseInt(productos.SSD[2].precio);
+            break;
+        case productos.SSD[3].descripcion:
+            precio = parseInt(productos.SSD[3].precio);
+            break;
+        case productos.PlacaBase[1].descripcion:
+            precio = parseInt(productos.PlacaBase[1].precio);
+            break;
+        case productos.PlacaBase[2].descripcion:
+            precio = parseInt(productos.PlacaBase[2].precio);
+            break;
+        case productos.PlacaBase[3].descripcion:
+            precio = parseInt(productos.PlacaBase[3].precio);
+            break;
+        case productos.Disipador[1].descripcion:
+            precio = parseInt(productos.Disipador[1].precio);
+            break;
+        case productos.Disipador[2].descripcion:
+            precio = parseInt(productos.Disipador[2].precio);
+            break;
+        case productos.Disipador[3].descripcion:
+            precio = parseInt(productos.Disipador[3].precio);
+            break;
+        case productos.Chasis[1].descripcion:
+            precio = parseInt(productos.Chasis[1].precio);
+            break;
+        case productos.Chasis[2].descripcion:
+            precio = parseInt(productos.Chasis[2].precio);
+            break;
+        case productos.Chasis[3].descripcion:
+            precio = parseInt(productos.Chasis[3].precio);
+            break;
+    }
+    elegido.innerText = ""
+    precioTotal.value = parseInt(precioTot) - parseInt(precio) + '€'
+    guardarEnLocal()
+
+}
 //Añadir descripcion del producto a la lista y actualizar precio
-function addToCart(event, idPieza, descripcion, precio){ 
-    let precioTotal = document.getElementById('precio');
-    let precioTot = document.getElementById('precio').value.slice(0, document.getElementById('precio').value.length - 1);
+function addToCart(event, idPieza, descripcion, select){
+    precioTotal = document.getElementById('precio');
+    precioTot = precioTotal.value.slice(0, precioTotal.value.length - 1);
     let cesta = document.getElementById('listaElegidos');
     let CPUelegido = document.getElementById('CPUelegido');
     let GPUelegido = document.getElementById('GPUelegido');
@@ -145,35 +259,885 @@ function addToCart(event, idPieza, descripcion, precio){
     let ChasisElegido = document.getElementById('ChasisElegido');
     console.log('test 1');
     console.log(descripcion.innerText);
-    console.log(precio.innerText);
-    precioTotal.value = parseInt(precioTot) + parseInt(precio) + '€';
+    console.log(precio);
 
-    switch(idPieza){
+    
+    
+
+    switch (idPieza){
         case 'CPU':
-            CPUelegido.innerText = descripcion.innerText;
-        break;
+            switch(CPUelegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            CPUelegido.innerText = productos.CPU[1].descripcion;
+                            precioProducto = parseInt(productos.CPU[1].precio);
+                            break;
+                        case '2':
+                            CPUelegido.innerText = productos.CPU[2].descripcion;
+                            precioProducto = parseInt(productos.CPU[2].precio);
+                            break;
+                        case '3':
+                            CPUelegido.innerText = productos.CPU[3].descripcion;
+                            precioProducto = parseInt(productos.CPU[3].precio);
+                            break;
+                        case '4':
+                            CPUelegido.innerText = productos.CPU[4].descripcion;
+                            precioProducto = parseInt(productos.CPU[4].precio);
+                            break;
+                        default:
+                            descripcion.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.CPU[1].descripcion:
+                    precioTot -= parseInt(productos.CPU[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            CPUelegido.innerText = productos.CPU[1].descripcion;
+                            precioProducto = parseInt(productos.CPU[1].precio);
+                            break;
+                        case '2':
+                            CPUelegido.innerText = productos.CPU[2].descripcion;
+                            precioProducto = parseInt(productos.CPU[2].precio);
+                            break;
+                        case '3':
+                            CPUelegido.innerText = productos.CPU[3].descripcion;
+                            precioProducto = parseInt(productos.CPU[3].precio);
+                            break;
+                        case '4':
+                            CPUelegido.innerText = productos.CPU[4].descripcion;
+                            precioProducto = parseInt(productos.CPU[4].precio);
+                            break;
+                        default:
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.CPU[2].descripcion:
+                    precioTot -= parseInt(productos.CPU[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            CPUelegido.innerText = productos.CPU[1].descripcion;
+                            precioProducto = parseInt(productos.CPU[1].precio);
+                            break;
+                        case '2':
+                            CPUelegido.innerText = productos.CPU[2].descripcion;
+                            precioProducto = parseInt(productos.CPU[2].precio);
+                            break;
+                        case '3':
+                            CPUelegido.innerText = productos.CPU[3].descripcion;
+                            precioProducto = parseInt(productos.CPU[3].precio);
+                            break;
+                        case '4':
+                            CPUelegido.innerText = productos.CPU[4].descripcion;
+                            precioProducto = parseInt(productos.CPU[4].precio);
+                            break;
+                        default:
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.CPU[3].descripcion:
+                    precioTot -= parseInt(productos.CPU[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            CPUelegido.innerText = productos.CPU[1].descripcion;
+                            precioProducto = parseInt(productos.CPU[1].precio);
+                            break;
+                        case '2':
+                            CPUelegido.innerText = productos.CPU[2].descripcion;
+                            precioProducto = parseInt(productos.CPU[2].precio);
+                            break;
+                        case '3':
+                            CPUelegido.innerText = productos.CPU[3].descripcion;
+                            precioProducto = parseInt(productos.CPU[3].precio);
+                            break;
+                        case '4':
+                            CPUelegido.innerText = productos.CPU[4].descripcion;
+                            precioProducto = parseInt(productos.CPU[4].precio);
+                            break;
+                        default:
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.CPU[4].descripcion:
+                    precioTot -= parseInt(productos.CPU[4].precio);
+                    switch (select.value) {
+                        case '0':
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            CPUelegido.innerText = productos.CPU[1].descripcion;
+                            precioProducto = parseInt(productos.CPU[1].precio);
+                            break;
+                        case '2':
+                            CPUelegido.innerText = productos.CPU[2].descripcion;
+                            precioProducto = parseInt(productos.CPU[2].precio);
+                            break;
+                        case '3':
+                            CPUelegido.innerText = productos.CPU[3].descripcion;
+                            precioProducto = parseInt(productos.CPU[3].precio);
+                            break;
+                        case '4':
+                            CPUelegido.innerText = productos.CPU[4].descripcion;
+                            precioProducto = parseInt(productos.CPU[4].precio);
+                            break;
+                        default:
+                            CPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+            }
+            break;
         case 'GPU':
-            GPUelegido.innerText = descripcion.innerText;
-        break;
+            switch(GPUelegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            GPUelegido.innerText = productos.GPU[1].descripcion;
+                            precioProducto = parseInt(productos.GPU[1].precio);
+                            break;
+                        case '2':
+                            GPUelegido.innerText = productos.GPU[2].descripcion;
+                            precioProducto = parseInt(productos.GPU[2].precio);
+                            break;
+                        case '3':
+                            GPUelegido.innerText = productos.GPU[3].descripcion;
+                            precioProducto = parseInt(productos.GPU[3].precio);
+                            break;
+                        default:
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.GPU[1].descripcion:
+                    precioTot -= parseInt(productos.GPU[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            GPUelegido.innerText = productos.GPU[1].descripcion;
+                            precioProducto = parseInt(productos.GPU[1].precio);
+                            break;
+                        case '2':
+                            GPUelegido.innerText = productos.GPU[2].descripcion;
+                            precioProducto = parseInt(productos.GPU[2].precio);
+                            break;
+                        case '3':
+                            GPUelegido.innerText = productos.GPU[3].descripcion;
+                            precioProducto = parseInt(productos.GPU[3].precio)
+                            break;
+                        default:
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.GPU[2].descripcion:
+                    precioTot -= parseInt(productos.GPU[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            GPUelegido.innerText = productos.GPU[1].descripcion;
+                            precioProducto = parseInt(productos.GPU[1].precio);
+                            break;
+                        case '2':
+                            GPUelegido.innerText = productos.GPU[2].descripcion;
+                            precioProducto = parseInt(productos.GPU[2].precio);
+                            break;
+                        case '3':
+                            GPUelegido.innerText = productos.GPU[3].descripcion;
+                            precioProducto = parseInt(productos.GPU[3].precio);
+                            break;
+                        default:
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.GPU[3].descripcion:
+                    precioTot -= parseInt(productos.GPU[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            GPUelegido.innerText = productos.GPU[1].descripcion;
+                            precioProducto = parseInt(productos.GPU[1].precio);
+                            break;
+                        case '2':
+                            GPUelegido.innerText = productos.GPU[2].descripcion;
+                            precioProducto = parseInt(productos.GPU[2].precio);
+                            break;
+                        case '3':
+                            GPUelegido.innerText = productos.GPU[3].descripcion;
+                            precioProducto = parseInt(productos.GPU[3].precio);
+                            break;                 ;
+                        default:
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.GPU[4].descripcion:
+                    precioTot -= parseInt(productos.GPU[4].precio);
+                    switch (select.value) {
+                        case '0':
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            GPUelegido.innerText = productos.GPU[1].descripcion;
+                            precioProducto = parseInt(productos.GPU[1].precio);
+                            break;
+                        case '2':
+                            GPUelegido.innerText = productos.GPU[2].descripcion;
+                            precioProducto = parseInt(productos.GPU[2].precio);
+                                                break;
+                        case '3':
+                            GPUelegido.innerText = productos.GPU[3].descripcion;
+                            precioProducto = parseInt(productos.GPU[3].precio)                  ;
+                        default:
+                            GPUelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+            }
+            break;
         case 'Alimentación':
-            AlimentaciónElegido.innerText = descripcion.innerText;
-        break;
+            switch(AlimentaciónElegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            AlimentaciónElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            AlimentaciónElegido.innerText = productos.Alimentación[1].descripcion;
+                            precioProducto = parseInt(productos.Alimentación[1].precio);
+                            break;
+                        case '2':
+                            AlimentaciónElegido.innerText = productos.Alimentación[2].descripcion;
+                            precioProducto = parseInt(productos.Alimentación[2].precio);
+                            break;
+                        default:
+                            AlimentaciónElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                break;
+                case productos.Alimentación[1].descripcion:
+                    precioTot -= parseInt(productos.Alimentación[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            AlimentaciónElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            AlimentaciónElegido.innerText = productos.Alimentación[1].descripcion;
+                            precioProducto = parseInt(productos.Alimentación[1].precio);
+                            break;
+                        case '2':
+                            AlimentaciónElegido.innerText = productos.Alimentación[2].descripcion;
+                            precioProducto = parseInt(productos.Alimentación[2].precio);
+                            break;
+                        default:
+                            AlimentaciónElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break
+                case productos.Alimentación[2].descripcion:
+                    precioTot -= parseInt(productos.Alimentación[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            AlimentaciónElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            AlimentaciónElegido.innerText = productos.Alimentación[1].descripcion;
+                            precioProducto = parseInt(productos.Alimentación[1].precio);
+                            break;
+                        case '2':
+                            AlimentaciónElegido.innerText = productos.Alimentación[2].descripcion;
+                            precioProducto = parseInt(productos.Alimentación[2].precio);
+                            break;
+                        default:
+                            AlimentaciónElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break
+            }
+            break;
         case 'RAM':
-            RAMelegido.innerText = descripcion.innerText;
-        break;
+            switch(RAMelegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RAMelegido.innerText = productos.RAM[1].descripcion;
+                            precioProducto = parseInt(productos.RAM[1].precio);
+                            break;
+                        case '2':
+                            RAMelegido.innerText = productos.RAM[2].descripcion;
+                            precioProducto = parseInt(productos.RAM[2].precio);
+                            break;
+                        case '3':
+                            RAMelegido.innerText = productos.RAM[3].descripcion;
+                            precioProducto = parseInt(productos.RAM[3].precio);
+                            break;
+                        default:
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.RAM[1].descripcion:
+                    precioTot -= parseInt(productos.RAM[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RAMelegido.innerText = productos.RAM[1].descripcion;
+                            precioProducto = parseInt(productos.RAM[1].precio);
+                            break;
+                        case '2':
+                            RAMelegido.innerText = productos.RAM[2].descripcion;
+                            precioProducto = parseInt(productos.RAM[2].precio);
+                            break;
+                        case '3':
+                            RAMelegido.innerText = productos.RAM[3].descripcion;
+                            precioProducto = parseInt(productos.RAM[3].precio);
+                            break;
+                        default:
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.RAM[2].descripcion:
+                    precioTot -= parseInt(productos.RAM[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RAMelegido.innerText = productos.RAM[1].descripcion;
+                            precioProducto = parseInt(productos.RAM[1].precio);
+                            break;
+                        case '2':
+                            RAMelegido.innerText = productos.RAM[2].descripcion;
+                            precioProducto = parseInt(productos.RAM[2].precio);
+                            break;
+                        case '3':
+                            RAMelegido.innerText = productos.RAM[3].descripcion;
+                            precioProducto = parseInt(productos.RAM[3].precio);
+                            break;
+                        default:
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.RAM[3].descripcion:
+                    precioTot -= parseInt(productos.RAM[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RAMelegido.innerText = productos.RAM[1].descripcion;
+                            precioProducto = parseInt(productos.RAM[1].precio);
+                            break;
+                        case '2':
+                            RAMelegido.innerText = productos.RAM[2].descripcion;
+                            precioProducto = parseInt(productos.RAM[2].precio);
+                            break;
+                        case '3':
+                            RAMelegido.innerText = productos.RAM[3].descripcion;
+                            precioProducto = parseInt(productos.RAM[3].precio);
+                            break;
+                        default:
+                            RAMelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+            }   
+            break;
         case 'SSD':
-            SSDelegido.innerText = descripcion.innerText;
-        break;
+            switch (SSDelegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            SSDelegido.innerText = productos.SSD[1].descripcion;
+                            precioProducto = parseInt(productos.SSD[1].precio);
+                            break;
+                        case '2':
+                            SSDelegido.innerText = productos.SSD[2].descripcion;
+                            precioProducto = parseInt(productos.SSD[2].precio);
+                            break;
+                        case '3':
+                            SSDelegido.innerText = productos.SSD[3].descripcion;
+                            precioProducto = parseInt(productos.SSD[3].precio);
+                            break;
+                        default:
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }   
+                    break;
+                case productos.SSD[1].descripcion:
+                    precioTot -= parseInt(productos.SSD[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            SSDelegido.innerText = productos.SSD[1].descripcion;
+                            precioProducto = parseInt(productos.SSD[1].precio);
+                            break;
+                        case '2':
+                            SSDelegido.innerText = productos.SSD[2].descripcion;
+                            precioProducto = parseInt(productos.SSD[2].precio);
+                            break;
+                        case '3':
+                            SSDelegido.innerText = productos.SSD[3].descripcion;
+                            precioProducto = parseInt(productos.SSD[3].precio);
+                            break;
+                        default:
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.SSD[2].descripcion:
+                    precioTot -= parseInt(productos.SSD[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            SSDelegido.innerText = productos.SSD[1].descripcion;
+                            precioProducto = parseInt(productos.SSD[1].precio);
+                            break;
+                        case '2':
+                            SSDelegido.innerText = productos.SSD[2].descripcion;
+                            precioProducto = parseInt(productos.SSD[2].precio);
+                            break;
+                        case '3':
+                            SSDelegido.innerText = productos.SSD[3].descripcion;
+                            precioProducto = parseInt(productos.SSD[3].precio);
+                            break;
+                        default:
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                    }
+                    break;
+                case productos.SSD[3].descripcion:
+                    precioTot -= parseInt(productos.SSD[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            SSDelegido.innerText = productos.SSD[1].descripcion;
+                            precioProducto = parseInt(productos.SSD[1].precio);
+                            break;
+                        case '2':
+                            SSDelegido.innerText = productos.SSD[2].descripcion;
+                            precioProducto = parseInt(productos.SSD[2].precio);
+                            break;
+                        case '3':
+                            SSDelegido.innerText = productos.SSD[3].descripcion;
+                            precioProducto = parseInt(productos.SSD[3].precio);
+                            break;
+                        default:
+                            SSDelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                             break;
+                    }
+                    break;
+            }
+            break;
         case 'PlacaBase':
-            PBelegido.innerText = descripcion.innerText;
-        break;
+            switch (PBelegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            PBelegido.innerText = productos.PlacaBase[1].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[1].precio);
+                            break;
+                        case '2':
+                            PBelegido.innerText = productos.PlacaBase[2].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[2].precio);
+                            break;
+                        case '3':
+                            PBelegido.innerText = productos.PlacaBase[3].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[3].precio);
+                            break;
+                        default:
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.PlacaBase[1].descripcion:
+                    precioTot -= parseInt(productos.PlacaBase[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            PBelegido.innerText = productos.PlacaBase[1].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[1].precio);
+                            break;
+                        case '2':
+                            PBelegido.innerText = productos.PlacaBase[2].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[2].precio);
+                            break;
+                        case '3':
+                            PBelegido.innerText = productos.PlacaBase[3].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[3].precio);
+                            break;
+                        default:
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.PlacaBase[2].descripcion:
+                    precioTot -= parseInt(productos.PlacaBase[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            PBelegido.innerText = productos.PlacaBase[1].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[1].precio);
+                            break;
+                        case '2':
+                            PBelegido.innerText = productos.PlacaBase[2].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[2].precio);
+                            break;
+                        case '3':
+                            PBelegido.innerText = productos.PlacaBase[3].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[3].precio);
+                            break;
+                        default:
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.PlacaBase[3].descripcion:
+                    precioTot -= parseInt(productos.PlacaBase[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            PBelegido.innerText = productos.PlacaBase[1].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[1].precio);
+                            break;
+                        case '2':
+                            PBelegido.innerText = productos.PlacaBase[2].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[2].precio);
+                            break;
+                        case '3':
+                            PBelegido.innerText = productos.PlacaBase[3].descripcion;
+                            precioProducto = parseInt(productos.PlacaBase[3].precio);
+                            break;
+                        default:
+                            PBelegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+            }   
+            break;
         case 'Disipador':
-            RefrigeracionElegido.innerText = descripcion.innerText;
-        break;
+            switch (RefrigeracionElegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RefrigeracionElegido.innerText = productos.Disipador[1].descripcion;
+                            precioProducto = parseInt(productos.Disipador[1].precio);
+                            break;
+                        case '2':
+                            RefrigeracionElegido.innerText = productos.Disipador[2].descripcion;
+                            precioProducto = parseInt(productos.Disipador[2].precio);
+                            break;
+                        case '3':
+                            RefrigeracionElegido.innerText = productos.Disipador[3].descripcion;
+                            precioProducto = parseInt(productos.Disipador[3].precio);
+                            break;
+                        default:
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }   
+                    break;
+                case productos.Disipador[1].descripcion:
+                    precioTot -= parseInt(productos.Disipador[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RefrigeracionElegido.innerText = productos.Disipador[1].descripcion;
+                            precioProducto = parseInt(productos.Disipador[1].precio);
+                            break;
+                        case '2':
+                            RefrigeracionElegido.innerText = productos.Disipador[2].descripcion;
+                            precioProducto = parseInt(productos.Disipador[2].precio);
+                            break;
+                        case '3':
+                            RefrigeracionElegido.innerText = productos.Disipador[3].descripcion;
+                            precioProducto = parseInt(productos.Disipador[3].precio);
+                            break;
+                        default:
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.Disipador[2].descripcion:
+                    precioTot -= parseInt(productos.Disipador[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RefrigeracionElegido.innerText = productos.Disipador[1].descripcion;
+                            precioProducto = parseInt(productos.Disipador[1].precio);
+                            break;
+                        case '2':
+                            RefrigeracionElegido.innerText = productos.Disipador[2].descripcion;
+                            precioProducto = parseInt(productos.Disipador[2].precio);
+                            break;
+                        case '3':
+                            RefrigeracionElegido.innerText = productos.Disipador[3].descripcion;
+                            precioProducto = parseInt(productos.Disipador[3].precio);
+                            break;
+                        default:
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+                case productos.Disipador[3].descripcion:
+                    precioTot -= parseInt(productos.Disipador[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            RefrigeracionElegido.innerText = productos.Disipador[1].descripcion;
+                            precioProducto = parseInt(productos.Disipador[1].precio);
+                            break;
+                        case '2':
+                            RefrigeracionElegido.innerText = productos.Disipador[2].descripcion;
+                            precioProducto = parseInt(productos.Disipador[2].precio);
+                            break;
+                        case '3':
+                            RefrigeracionElegido.innerText = productos.Disipador[3].descripcion;
+                            precioProducto = parseInt(productos.Disipador[3].precio);
+                            break;
+                        default:
+                            RefrigeracionElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }
+                    break;
+            }
+            break;
         case 'Chasis':
-            ChasisElegido.innerText = descripcion.innerText;
-        break;
+            switch (ChasisElegido.innerText){
+                case "":
+                    switch (select.value) {
+                        case '0':
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            ChasisElegido.innerText = productos.Chasis[1].descripcion;
+                            precioProducto = parseInt(productos.Chasis[1].precio);
+                            break;
+                        case '2':
+                            ChasisElegido.innerText = productos.Chasis[2].descripcion;
+                            precioProducto = parseInt(productos.Chasis[2].precio);
+                            break;
+                        case '3':
+                            ChasisElegido.innerText = productos.Chasis[3].descripcion;
+                            precioProducto = parseInt(productos.Chasis[3].precio);
+                            break;
+                        default:
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }   
+                break;
+                case productos.Chasis[1].descripcion:
+                    precioTot -= parseInt(productos.Chasis[1].precio);
+                    switch (select.value) {
+                        case '0':
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            ChasisElegido.innerText = productos.Chasis[1].descripcion;
+                            precioProducto = parseInt(productos.Chasis[1].precio);
+                            break;
+                        case '2':
+                            ChasisElegido.innerText = productos.Chasis[2].descripcion;
+                            precioProducto = parseInt(productos.Chasis[2].precio);
+                            break;
+                        case '3':
+                            ChasisElegido.innerText = productos.Chasis[3].descripcion;
+                            precioProducto = parseInt(productos.Chasis[3].precio);
+                            break;
+                        default:
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }   
+                break;
+                case productos.Chasis[2].descripcion:
+                    precioTot -= parseInt(productos.Chasis[2].precio);
+                    switch (select.value) {
+                        case '0':
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            ChasisElegido.innerText = productos.Chasis[1].descripcion;
+                            precioProducto = parseInt(productos.Chasis[1].precio);
+                            break;
+                        case '2':
+                            ChasisElegido.innerText = productos.Chasis[2].descripcion;
+                            precioProducto = parseInt(productos.Chasis[2].precio);
+                            break;
+                        case '3':
+                            ChasisElegido.innerText = productos.Chasis[3].descripcion;
+                            precioProducto = parseInt(productos.Chasis[3].precio);
+                            break;
+                        default:
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }   
+                break;
+                case productos.Chasis[3].descripcion:
+                    precioTot -= parseInt(productos.Chasis[3].precio);
+                    switch (select.value) {
+                        case '0':
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                            break;
+                        case '1':
+                            ChasisElegido.innerText = productos.Chasis[1].descripcion;
+                            precioProducto = parseInt(productos.Chasis[1].precio);
+                            break;
+                        case '2':
+                            ChasisElegido.innerText = productos.Chasis[2].descripcion;
+                            precioProducto = parseInt(productos.Chasis[2].precio);
+                            break;
+                        case '3':
+                            ChasisElegido.innerText = productos.Chasis[3].descripcion;
+                            precioProducto = parseInt(productos.Chasis[3].precio);
+                            break;
+                        default:
+                            ChasisElegido.innerText = '';
+                            precioProducto = parseInt(0);
+                        break;
+                    }   
+                break;
+            }
+            break;
+            
     }
+    precioTotal.value = parseInt(precioTot) + parseInt(precioProducto) + '€';
+    guardarEnLocal()
+    
+}
+
+function guardarEnLocal(){
+    localStorage.setItem('precioTotal',precioTotal.value)
+    localStorage.setItem('CPUelegido',CPUelegido.innerText);
+    localStorage.setItem('GPUelegido',GPUelegido.innerText);
+    localStorage.setItem('AlimentaciónElegido',AlimentaciónElegido.innerText);
+    localStorage.setItem('RAMelegido',RAMelegido.innerText);
+    localStorage.setItem('SSDelegido',SSDelegido.innerText);
+    localStorage.setItem('PBelegido',PBelegido.innerText);
+    localStorage.setItem('RefrigeracionElegido',RefrigeracionElegido.innerText);
+    localStorage.setItem('ChasisElegido',ChasisElegido.innerText);
 }
 
 //Cambiar contenido de la tarjeta según el select
@@ -185,7 +1149,6 @@ function cambiarContenido(event) {
     let descripcion = section.querySelector('.descripcion')
     let precio = section.querySelector('.precio')
     let selectedText = select.options[select.selectedIndex].innerText;
-    console.log() 
 
     switch (section.attributes.id.nodeValue){
         case 'CPU':
@@ -393,8 +1356,8 @@ function cambiarContenido(event) {
         pieza.addEventListener('dragstart',guardarInfo);
     }
 }
-
-
-
 document.addEventListener('DOMContentLoaded',domCargado);
-
+var elegidos = document.getElementsByClassName('elegidos');
+    for (let elegido of elegidos){
+        elegido.addEventListener('click',function (e){removeItem(e, elegido)})
+    }
