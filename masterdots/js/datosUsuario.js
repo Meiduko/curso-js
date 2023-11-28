@@ -10,6 +10,7 @@ var nick;
 var size;
 var email;
 var geolocalizacionTxt;
+var avatarImg
 
 //SessionStorage
 /**
@@ -19,18 +20,19 @@ var geolocalizacionTxt;
  * @param {HTMLElement} email email del usuario
  * @returns {Boolean}
  */
-function datosUsuario(nick, size, email){
+function datosUsuario(nick, size, email, avatarCont){
     sessionStorage.setItem('nick',nick.value);
     sessionStorage.setItem('size',size.value);
     sessionStorage.setItem('email',email.value);
-    sessionStorage.setItem('geolocalizacionTxt',geolocalizacionTxt)
+    sessionStorage.setItem('geolocalizacionTxt',geolocalizacionTxt);
+    sessionStorage.setItem('avatarImg',avatarCont.src);
 }
 
 function getDatosUsuario(){
     nick = sessionStorage.getItem('nick');
     size = sessionStorage.getItem('size');
     email = sessionStorage.getItem('email');
-
+    avatarImg = sessionStorage.getItem('avatarImg');
 }
 
 function comprobacionDatosUsuario(){

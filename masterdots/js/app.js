@@ -14,6 +14,7 @@ var error;
 var avatarItems;
 var itemImg;
 var avatarCont;
+var avatarImg;
 
 
 
@@ -39,7 +40,7 @@ function comprobarForm(event){
         return false;
     }
     //La informacion es correcta
-    datosUsuario(nickinput, sizeinput, emailinput);
+    datosUsuario(nickinput, sizeinput, emailinput, avatarCont);
     historicoUsuarios(nickinput);
     return true;
 }
