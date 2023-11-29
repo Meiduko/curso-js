@@ -1,0 +1,80 @@
+body{
+    font-family: 'Quicksand', sans-serif; 
+    background-color: #121215;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #121215;
+    color: #955F31;
+}
+form{
+    background-image: url(../img/poker_background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #121215;
+    background-position: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ul{
+    width: 320px;
+    border-radius: 15px;    
+}
+label{
+    display: block;
+    font-weight: 600;
+}
+input, select{
+    display: inline;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    font-family: 'Quicksand', sans-serif;
+    height: 30px;
+    width: 300px;
+    border: 1px;
+    padding: 0px 0px 0px 2px;
+    font-weight: 200;
+}
+
+button{
+    border-radius: 10px;
+    background-color: #093224;
+    color: #fff;
+    height: 30px;
+    width: 300px;
+    font-family: 'Quicksand', sans-serif;
+}
+#nicka{
+    color: #0D1117;
+    background-color: whitesmoke;
+    border-radius: 10px 0 0 10px;
+    float: left;
+    width: 20px;
+    height: 30px;
+    background-color: #ced4da;
+}
+#nick{
+    border-radius: 0 10px 10px 0;
+    width: 278px;
+    height: 30px;
+}
+#avatarContainer{
+    float: left;
+    padding: 5px;
+    border: 1px solid #0D1117;
+    border-radius: 10px;
+    margin: 2px 10px 10px 0;
+}
+#avatarGrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
+    column-gap: 1px;
+    row-gap: 15px;
+}
