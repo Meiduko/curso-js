@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/gamestyles.css">
+    <title>Picture poker game</title>
+</head>
+<body>
+    <nav>Picture
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 48 48">
+            <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
+                <path d="M42 4H12v40h30V4Z"/><path stroke-linecap="round" d="M4 11.79L12 10v34L4 11.79Z" clip-rule="evenodd"/>
+                <path d="m27 18l-5 6l5 6l5-6l-5-6Z"/>
+                <path stroke-linecap="round" d="M18 10v4m18 20v4"/>
+            </g>
+        </svg>
+    poker</nav>
+    <main>
+        <div id="imgContainer">
+            <img src="" width="80" id="avatarImg">
+        </div>
+        <form action="game.html">
+            <ul>
+                <li class="formItem">
+                    <label for="nick">Nick</label>
+                    <input type="text" id="nick" value="" readonly>
+                </li>
+                <li class="formItem">
+                    <label for="email">Email</label>
+                    <input type="email" id="nick" value="you@" readonly>
+                </li>
+                <li class="formItem">
+                    <label for="score">Score</label>
+                    <input type="text" id="score" value="0" readonly>
+                </li>
+                <li class="formItem">
+                    <label for="time">Time</label>
+                    <input type="number" id="timer" value="30" readonly>
+                </li>
+            </ul>
+        </form>
+        <div id="game">
+            
+        </div>
+    </main>
+</body>
+<script src="./js/userData.js"></script>
+<script src="./js/game.js"></script>
+</html>

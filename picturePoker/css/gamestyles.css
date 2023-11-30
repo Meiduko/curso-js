@@ -1,0 +1,52 @@
+body{
+    font-family: 'Quicksand', sans-serif; 
+    background-color: #121215;
+    color: white;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #121215;
+    color: #955F31;
+}
+form{
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    grid-template-columns: 1fr;
+    justify-content: center;
+}
+form ul{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+form input{
+    background-color: #093224;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+#imgContainer{
+    display: flex;
+    justify-content: center;
+}
+.formItem{
+    display: grid;
+    grid-template-rows: repeat(2,30px);
+}
+#game{
+    background-image:radial-gradient(#298055, #093224 );
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    align-items: center;
+    justify-content: center;
+    border: 10px solid #955F31;
+    border-radius: 100px;
+    padding: 15px 0 15px 0;
+    row-gap: 5px;
+}
+.card{
+    display: flex;
+    justify-content: center;
+}
