@@ -35,18 +35,49 @@ form input{
     display: grid;
     grid-template-rows: repeat(2,30px);
 }
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
 #game{
+    position: absolute;
+    z-index: 2;
     background-image:radial-gradient(#298055, #093224 );
     display: grid;
     grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
     align-items: center;
     justify-content: center;
     border: 10px solid #955F31;
     border-radius: 100px;
-    padding: 15px 0 15px 0;
-    row-gap: 5px;
+    padding: 25px 40px 25px 40px;
+    row-gap: 20px;
+    column-gap: 50px;
+    width: 935px;
+    height: 960px;
 }
 .card{
     display: flex;
     justify-content: center;
+}
+#endGame{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 90px;
+    margin-top: 7px;
+    width: 1012px;
+    height: 1010px;
+    z-index: 3;
+    background-color: #093224;
+}
+
+#endgame button{
+    font-family: 'Quicksand', sans-serif;
+    
+}
+.hidden{
+    display: none;
 }

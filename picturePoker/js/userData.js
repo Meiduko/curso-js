@@ -29,7 +29,7 @@ function getUserData(){
     size = sessionStorage.getItem('size');
     avatarImg = sessionStorage.getItem('avatarImg');
     error = sessionStorage.getItem('error')
-    if (nick.length==0||email.length==0||size=='0'){
+    if (nick==null||email==null||size=='0'){
         location = 'index.html'
     }
 }
