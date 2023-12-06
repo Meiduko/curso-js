@@ -52,31 +52,52 @@ form input{
     border: 10px solid #955F31;
     border-radius: 100px;
     padding: 25px 40px 25px 40px;
-    row-gap: 20px;
-    column-gap: 50px;
-    width: 935px;
-    height: 960px;
+    width: 755px;
+    height: 780px;
+}
+.cardContainer{
+    display: flex;
+    justify-content: center;
 }
 .card{
     display: flex;
     justify-content: center;
+    justify-self: center;
+
+}
+.character{
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+
 }
 #endGame{
     position: absolute;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     border-radius: 90px;
     margin-top: 7px;
-    width: 1012px;
-    height: 1010px;
+    width: 832px;
+    height: 830px;
     z-index: 3;
-    background-color: #093224;
+    background-image:radial-gradient(#298055, #093224 );
 }
-
-#endgame button{
+#newGame{
     font-family: 'Quicksand', sans-serif;
-    
+    width: 55px;
+    height: 55px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 
+    0 0 0 4px black,
+    0 0 0 8px red;
+    justify-self: center;
+}
+#win{
+    align-self: end;
+    font-size: 24px;
 }
 .hidden{
     display: none;

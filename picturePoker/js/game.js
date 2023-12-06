@@ -1,8 +1,12 @@
 var gameTable;
 var endGame;
 var endGameButton;
-var selectedCard
-var selectedCharacter
+var selectedCard;
+var selectedCharacter;
+var successes;
+var totalPairs;
+var size = 4;
+var items;
 var selectedCards = [];
 var selectedCharacters = [];
 var cards = {
@@ -17,13 +21,14 @@ function getRandomInt(max){
 function fillForm(){
     document.getElementById('avatarImg').src = avatarImg;
     document.getElementById('nick').value = nick;
+    document.getElementById('email').value = email
 }
 //Create room
 function createRoom(){
     gameTable = document.getElementById('game');
-    let items = "";
+    items = "";
     const totalCards = parseInt(size) * parseInt(size);
-    const totalPairs = parseInt(size) * parseInt(size) / 2;
+    totalPairs = parseInt(size) * parseInt(size) / 2;
     const keysToRemove = {}; // Almacena las claves de las cartas usadas
     const keys = Object.keys(cards)
     let usedKeys = 0; 
@@ -38,12 +43,12 @@ function createRoom(){
 
             // Agregar la carta al tablero
             items += `<div class="cardContainer">
-            <img class="card" src="./img/carta.webp" alt="" >
-            <img class="character hidden" src="${cards[key][randomObject]}" height="225px" alt="">
+            <img class="card" src="./img/carta.webp" height="150px" alt="" >
+            <img class="character hidden" src="${cards[key][randomObject]}" height="150px" alt="">
             </div>`;
             items += `<div class="cardContainer">
-            <img class="card" src="./img/carta.webp" alt="" >
-            <img class="character hidden" src="${cards[key][randomObject]}" height="225px" alt="">
+            <img class="card" src="./img/carta.webp" height="150px" alt="" >
+            <img class="character hidden" src="${cards[key][randomObject]}" height="150px" alt="">
             </div>`;
 
             // Delete generated cards
@@ -58,9 +63,9 @@ function createRoom(){
     endGameButton = endGame.querySelector('button');
     endGameButton.addEventListener('click', startGame);
 }
-// shuffleCards
-function shuffleCards(cards) {
-    const cardsArray = cards.split('</div>').filter(item => item.trim() !== '');
+// shuffle cards
+function shuffleCards(items) {
+    const cardsArray = items.split('</div>').filter(item => item.trim() !== '');
     for (let i = cardsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [cardsArray[i], cardsArray[j]] = [cardsArray[j], cardsArray[i]];
@@ -70,8 +75,9 @@ function shuffleCards(cards) {
 }
 //Start playing
 function startGame(){
+    successes = 0
     endGame.style.zIndex = '1';
-    endGameButton.innerText += ' again';
+    endGameButton.innerText = 'play again';
     let cards = document.getElementsByClassName('card');
     let characters = document.getElementsByClassName('character');
     setTimeout(() => {
@@ -81,7 +87,7 @@ function startGame(){
         for (let character of characters){
             character.classList.remove('hidden');
         }
-    }, 100);
+    }, 128);
     setTimeout(() => {
         for (let card of cards){
             card.classList.remove('hidden')
@@ -89,13 +95,14 @@ function startGame(){
         for (let character of characters){
             character.classList.add('hidden');
         }
-    }, 1500);
+    }, 1024);
     for (let card of cards){
         card.addEventListener('click',showCard)
     }
     for (let character of characters){
         character.addEventListener('click',hideCard);
     }
+    idInterval = setInterval(countDown,1024);
 };
 //Show cards 1 by 1
 function showCard(event){
@@ -105,7 +112,7 @@ function showCard(event){
     selectedCharacters.push(selectedCharacter);
     selectedCard.classList.add('hidden');
     selectedCharacter.classList.remove('hidden');
-    setInterval(checkPairs, 1500)
+    setInterval(checkPairs, 100)
 }
 function hideCard(event){
     let selectedCharacter = event.target;
@@ -114,15 +121,15 @@ function hideCard(event){
     selectedCharacter.classList.add('hidden');
     selectedCards = [];
     selectedCharacters = [];
-    score.value = parseInt(score.value)-1
 }
 //check pairs
 function checkPairs(){
     if (selectedCards.length == 2){
         if (selectedCharacters[0].src == selectedCharacters[1].src){
-            score.value = parseInt(score.value)+1
             selectedCharacters = [];
             selectedCards = [];
+            successes += 1
+            console.log(successes);
         }else{
             for (let card of selectedCards){
                 card.classList.remove('hidden');
@@ -131,9 +138,43 @@ function checkPairs(){
             for (let character of selectedCharacters){
                 character.classList.add('hidden');
                 selectedCharacters = [];
-            }   
-            score.value = parseInt(score.value)-1
+            }
         }
+    }
+}
+//Set countdown
+function countDown(){
+    let timeLeft = parseInt(document.getElementById('timer').value)-1;
+    let win = document.getElementById('win')
+    document.getElementById('timer').value = timeLeft;
+    if  (timeLeft == 0){
+        clearInterval(idInterval);
+        //Finalizar eventos
+        endGame.style.zIndex = '3';
+        win.classList.remove('hidden');
+        win.innerText = 'You lost, try again';
+        document.getElementById('win').style.marginBottom = '20px';
+        endGameButton.style.alignSelf = 'self-start';
+        endGameButton.addEventListener('click', function(e) {
+            items = shuffleCards(items),
+            gameTable.innerHTML = items,
+            endGame.style.zIndex = '1',
+            document.getElementById('timer').value = 30;
+        });
+    }
+    if (successes == totalPairs){
+        clearInterval(idInterval);
+        endGame.style.zIndex = '3';
+        win.classList.remove('hidden');
+        win.innerText = 'You win!! Congratulations';
+        document.getElementById('win').style.marginBottom = '20px';
+        endGameButton.style.alignSelf = 'self-start';
+        endGameButton.addEventListener('click', function(e) {
+            items = shuffleCards(items),
+            gameTable.innerHTML = items,
+            endGame.style.zIndex = '1',
+            document.getElementById('timer').value = 30;
+        });
     }
 }
 

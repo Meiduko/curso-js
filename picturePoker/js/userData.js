@@ -3,20 +3,17 @@
  */
 var nick;
 var email;
-var size;
 var avatarImg;
 var error;
 /**
  * Save user data
  * @param {HTMLElement} nick 
  * @param {HTMLElement} email 
- * @param {HTMLElement} size 
  * @param {HTMLElement} avatarImg 
  */
-function saveUserData(nick, email, size, avatarImg, error){
+function saveUserData(nick, email, avatarImg, error){
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('email', email.value);
-    sessionStorage.setItem('size', size.value);
     sessionStorage.setItem('avatarImg', avatarImg.src);
     sessionStorage.setItem('error', error.innerText);
 }
@@ -26,10 +23,9 @@ function saveUserData(nick, email, size, avatarImg, error){
 function getUserData(){
     nick = sessionStorage.getItem('nick');
     email = sessionStorage.getItem('email');
-    size = sessionStorage.getItem('size');
     avatarImg = sessionStorage.getItem('avatarImg');
     error = sessionStorage.getItem('error')
-    if (nick==null||email==null||size=='0'){
+    if (nick==null||email==null||email== (null||'me@myself')){
         location = 'index.html'
     }
 }

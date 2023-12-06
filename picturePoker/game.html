@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/gamestyles.css">
-    <title>Picture poker game</title>
+    <title>Picture poker</title>
 </head>
 <body>
     <nav>Picture
@@ -29,11 +29,7 @@
                 </li>
                 <li class="formItem">
                     <label for="email">Email</label>
-                    <input type="email" id="email" value="you@" readonly>
-                </li>
-                <li class="formItem">
-                    <label for="score">Score</label>
-                    <input type="text" id="score" value="0" readonly>
+                    <input type="email" id="email" value="" readonly>
                 </li>
                 <li class="formItem">
                     <label for="time">Time</label>
@@ -49,7 +45,10 @@
         </div>
         <div class="container">
             <div id="endGame">
+                <div></div>
+                <h2 id="win" class="hidden"></h2>
                 <button id="newGame">Play</button>
+                <div></div>
             </div>
         </div>
     </main>
